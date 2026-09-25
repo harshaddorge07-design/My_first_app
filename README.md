@@ -1,117 +1,77 @@
 # AI Travel Assistant
 
-A premium-looking travel planner built with Streamlit and the Google GenAI SDK. This app helps users create personalized trip suggestions based on their destination, trip length, budget, traveler profile, interests, and preferred transportation.
+A Streamlit app that uses Google Gemini to create personalized travel suggestions from a destination, trip length, budget, traveler type, interests, and preferred transportation.
 
 ## Features
 
-- Trip destination input
-- Number of trip days selector
-- Budget selection: Luxury, Moderate, or Budget
-- Traveler type: Solo, Couple, Family with kids, or Group of friends
-- Interest-based planning for relaxation, adventure, culture, history, food, nightlife, and nature
-- Transportation options such as public transit, rental car, walking, and taxis
-- AI-generated travel suggestions using Gemini
-- Premium dark UI with a glassmorphism design and animated loading screen
+- Collects trip preferences through a simple Streamlit form.
+- Generates bullet-point travel recommendations with Gemini.
+- Supports budget, moderate, and luxury travel styles.
+- Supports solo, couple, family, and group trips.
+- Lets travelers select interests and transportation options.
+- Displays a travel-themed loading animation while the recommendation is generated.
 
-## Tech Stack
+## Requirements
 
-- Python
-- Streamlit
-- Google GenAI
-- python-dotenv
+- Python 3.10 or newer
+- A Google Gemini API key
 
-## Project Structure
+## Setup
 
-```text
-travel_assistant/
-├── main.py
-├── README.md
-├── .env
-└── .venv/   # optional local virtual environment
-```
-
-## Prerequisites
-
-- Python 3.9 or newer
-- A Google API key for Gemini
-- A local virtual environment is recommended
-
-## Installation
-
-1. Open the project folder.
+1. Clone or download this repository and open its directory.
 2. Create and activate a virtual environment:
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
+	```powershell
+	python -m venv .venv
+	.\.venv\Scripts\Activate.ps1
+	```
 
 3. Install the required packages:
 
-```bash
-pip install streamlit python-dotenv google-genai
-```
+	```powershell
+	pip install streamlit google-genai python-dotenv
+	```
 
-4. Create a `.env` file in the project root and add your API key:
+4. Create a `.env` file in the project root:
 
-```env
-GEMINI_API_KEY=your_api_key_here
-```
+	```text
+	GEMINI_API_KEY=your_api_key_here
+	```
 
-## Run the App
+	Keep this file private. It is excluded from Git by `.gitignore`.
 
-```bash
+## Run the app
+
+```powershell
 streamlit run main.py
 ```
 
-Then open the URL shown in the terminal, typically:
+Streamlit will display a local URL, usually `http://localhost:8501`. Open it in a browser and complete the trip form.
+
+## How to use it
+
+1. Enter the destination.
+2. Choose the number of days, budget, and traveler type.
+3. Select interests and preferred transportation.
+4. Click **Plan trip**.
+5. Review the generated travel suggestions.
+
+## Project structure
 
 ```text
-http://localhost:8501
+travel_assistant/
+|-- main.py       # Streamlit interface and Gemini request
+|-- README.md     # Project documentation
+|-- .gitignore    # Keeps local environment secrets out of Git
 ```
 
-## How It Works
+## Troubleshooting
 
-The app gathers the user's travel preferences using Streamlit form inputs:
+- **Missing API key:** Confirm that `.env` exists in the same directory as `main.py` and contains `GEMINI_API_KEY`.
+- **Command not found:** Activate the virtual environment before running `streamlit`.
+- **API errors:** Check that the Gemini API key is valid and that the selected Gemini model is available for your account.
 
-- Destination
-- Trip duration
-- Budget
-- Traveler type
-- Interests
-- Transportation preferences
+## Security
 
-It then builds a prompt and sends it to the Gemini model. The AI response is displayed in the app as a trip recommendation.
+Never commit API keys or other secrets to the repository. Rotate the key immediately if it is exposed.
 
-## Example Prompt
-
-```text
-You are a travel planner.
-He/She wants to go to Paris for 5 days.
-He/She is on a moderate budget.
-The travel type is couple.
-Give suggestions in bullet format.
-```
-
-## Example Usage
-
-A user might enter:
-
-- Destination: Paris
-- Days: 5
-- Budget: Moderate
-- Travel type: Couple
-- Interests: Food, Culture, Relaxation
-- Transportation: Public transit, Walking
-
-The app returns a customized travel suggestion based on these choices.
-
-## Notes
-
-- The app includes a premium animated loading state while the AI call is running.
-- The current version is a simple AI travel assistant prototype.
-- You can extend it further with hotel suggestions, flights, maps, or itinerary export.
-
-## License
-
-This project is intended for personal or educational use unless a different license is added later.
